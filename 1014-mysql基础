@@ -1,0 +1,72 @@
+192.168.6.185
+===================
+1.常见的数据库
+	a.关系型数据库
+		informix IBM+HP 军、政、运、银 
+		db2      IBM    军、政、运、银
+		oracle   甲骨文  中大型
+		mysql    甲骨文  互联网公司
+		sqlserver 微软   传统公司
+	b.非关系型数据库
+		mongodb   大数据  爬虫  
+		redis     缓存    消息队列
+		cassandra facebook
+
+2.开源
+	源代码开放(github   gitlab)
+
+3.mysql的安装和配置
+	a.mysql软件包下载
+		https://dev.mysql.com/downloads/mysql
+	b.集成工具
+		phpstudy
+		启动服务后需要进行测试
+		b1.mysql的进程
+			打开命令提示符： win+r--cmd
+			tasklist | find "mysqld"
+			如果出现mysqld.exe 。。。说明进程已经启动
+			tasklist  查看系统中所有进程
+			|         管道，前面的输出作为后面的输入
+			find      搜索
+
+		b2.mysql的端口
+			3306
+			端口:区分应用层进程的标识
+			打开命令提示符： win+r--cmd
+			netstat -an | find "3306"
+			netstat -an 查看当前所有端口信息
+	c.MySQL的服务（c/s）
+		mysql   客户端服务
+		mysqld  服务端服务
+	d.登录
+		mysql的管理员root
+		d1.登录命令(命令提示符)
+			mysql
+				登录本地数据库
+			mysql -u root -p
+				管理员登录本地数据库 -u代表后面跟用户名
+			mysql -h 127.0.0.1 -u root -p
+				管理员登录IP为127.0.0.1的数据库 -h 代表远程IP
+		d2.登录方式
+			1>进入到命令所在文件夹
+				图形化进入到mysql的命令所在位置，地址栏中输入cmd，进行登录
+			2>设置环境变量(推荐)
+				计算机--属性--高级--环境变量--系统变量--Path中添加mysql的bin文件夹的路径
+				;D:\phpStudy\MySQL\bin
+				确定X3
+	e.基础命令(登录mysql之后)
+		数据库分为2部分，一部分是软件，一部分是数据
+		数据库是由表组成
+		表是由数据组成
+		show databases;
+			查看当前软件中有哪些数据库
+		select database();
+			查看当前数据库的名字
+			如果是null代表没有选择任何数据库
+		use test;
+			进入到test数据库中
+		show tables;
+			查看当前数据库中有哪些表
+		select * from ecs_goods\G
+		select * from ecs_goods;
+			查看ecs_goods表中所有的数据
