@@ -70,3 +70,48 @@
 		select * from ecs_goods\G
 		select * from ecs_goods;
 			查看ecs_goods表中所有的数据
+4.mysql图形化管理工具
+	mysql workbench
+	sqlyog(小海豚)
+	phpmyadmin
+	toad
+	navicat
+5.mysql的表结构
+	a.常见的数据类型
+		数值   123    int
+		字符   '123' 'abc'  char  varchar
+		日期   '2000-01-01' date
+		char和varchar区别
+		char()    定长  char(10)-->(6)-->存储(10)    速度快
+		varchar() 变长  varchar(10)-->(6)-->存储(6)  节省空间
+	b.表结构的创建
+		语法:create table 表(
+				列 数据类型,
+				列 数据类型,
+				。。。
+		);
+		需求:创建表商品(goods),商品名称(name) 字符类型,价格(price) 数值类型，出厂日期(ddate)日期类型
+		create table goods(
+			name char(20),
+			price int,
+			ddate date
+		);
+	c.表结构的修改
+		c1.增加列
+			需求:商品表(goods)中增加一个列，商品id(id),数值类型
+				alter table goods add id int;
+
+		c2.修改列
+			需求:商品表(goods)中id列数据类型修改为字符类型
+				alter table goods modify id char(10);
+
+		c3.删除列
+			需求:商品表(goods)中删除id列
+				alter table goods drop column id;
+	d.表结构的删除
+		语法:drop table 表名;
+			需求:删除goods表
+				drop table goods;
+				
+
+
