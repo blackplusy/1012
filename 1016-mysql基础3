@@ -37,8 +37,8 @@
 		select g.goods_name from ecs_goods g,ecs_category c
 		where g.cat_id=c.cat_id
 		and g.goods_name<>'KD876'
-		and c.cat_name='手机'
-		or c.cat_name='大家电';
+		and (c.cat_name='手机'
+		or c.cat_name='大家电');
 4.
 	1>
 	select * from test1 where department='计算机系' and place='北京';
@@ -124,4 +124,36 @@
 			select cat_id from ecs_goods where shop_price<2000;
 		2>查询分类表中cat_id为上面查询出来结果的分类名称
 			select cat_name from ecs_category where cat_id in (select cat_id from ecs_goods where shop_price<2000);
+--7.jpg
+	1>分析
+		a.查询c表中满足条件的C#
+			select c# from c where cn='税收基础';
+		b.查询sc表中C#为上面查询出来结果的s#
+			select s# from sc where c# in (select c# from c where cn='税收基础');
+		c.查询s表中s#为上面查询出来的s#，sn
+			select s#,sn from s where s# in (select s# from sc where c# in (select c# from c where cn='税收基础'));
+	2>
+		a.查询sc表中满足条件的s#
+			select s# from sc where c#='C2';
+		b.查询s表中s#为上面查询出来结果的xxx
+			select sn,sd from s where s# in (select s# from sc where c#='C2');
+	3>
+		select sn,sd from s where s# in (select s# from sc where c#!='C5');
+
+
+2.sakila数据库导入
+	1>下载sakila数据库
+		https://dev.mysql.com/doc/index-other.html
+	2>解压下载后的压缩包
+	3>命令提示符进入到解压后的文件夹
+	4>登录mysql
+		mysql -u root -p
+	5>导入sakila-schema.sql
+		source sakila-schema.sql;
+	6>导入sakila-data.sql
+		source	sakila-data.sql;
+	7>退出
+
+
+
 
