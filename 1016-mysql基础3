@@ -1,0 +1,127 @@
+1.查询分类名称是大家电并且本店售价低于2000的商品名称
+	1>分析列
+		分类名称
+		本店售价
+		商品名称
+	2>分析表
+		ecs_goods
+		ecs_category
+	3>关联
+		select * from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id;
+	4>过滤
+		select g.goods_name from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id
+		and c.cat_name='大家电'
+		and g.shop_price<2000;		
+2.查询商品表中suppliers_id为空的商品的商品名称和商品分类
+	1>分析列
+		suppliers_id
+		goods_name
+		cat_name
+	2>分析表
+		ecs_goods
+		ecs_category
+	3>关联
+		select * from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id;
+	4>过滤
+		select g.goods_name,c.cat_name from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id
+		and g.suppliers_id is null;
+3.查询商品名称不是KD876并且分类名称是手机或者大家电的商品名称
+	3>关联
+		select * from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id;
+	4>过滤
+		select g.goods_name from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id
+		and g.goods_name<>'KD876'
+		and c.cat_name='手机'
+		or c.cat_name='大家电';
+4.
+	1>
+	select * from test1 where department='计算机系' and place='北京';
+	2>
+	update test1 set department='信息学院' where department='计算机系';
+	3>
+	select t1.no,t1.name,t2.grade,t2.courses from test1 t1,test2 t2
+	where t1.no=t2.no
+	and t2.grade>=75;
+5.
+	1>
+	select s.name from student s,achievement a
+	where s.id=a.id
+	and a.mark>85;
+	2>
+	count()函数  计数
+	select count(id) from achievement where mark>=90;
+	3>
+	insert into achievement values(7,80);
+	4>
+	update achievement set mark=87 where id=3;
+	5>
+	delete from student where name='Betty';
+	delete from achievement where id=6;
+6.
+	1>select S#,grade from sc where c#='C2';
+	2>select sname from s where sname like 'D%';
+	3>
+	分析列
+		课程名
+		学号
+		姓名
+	分析表
+		c
+		s
+		sc
+	关联
+		select * from s,sc,c
+		where s.s#=sc.s#
+		and sc.c#=c.c#;
+	过滤
+		select s.s#,s.sname from s,sc,c
+		where s.s#=sc.s#
+		and sc.c#=c.c#
+		and c.cname='Maths';		
+	4>
+	select s# from sc where c# in ('C2','C4');
+
+===================================================================
+0.SQL分类
+	SQL(结构化查询语言)用来管理数据库的
+	DDL(数据库定义语言)  create alter drop truncate
+	DML(数据库操作语言)  insert update delete
+	DCL(数据库控制语言)  grant revoke
+	DQL(数据库查询语言)  select
+
+1.子查询
+	一条SQL语句执行依赖于另外一条SQL语句的执行结果
+	需求:查询商品名称是KD876的分类名称
+		1>查询商品表中满足条件的cat_id
+			select cat_id from ecs_goods where goods_name='KD876';
+
+		2>查询分类表中cat_id是上面查询出来结果的分类名称
+			select cat_name from ecs_category where cat_id=(select cat_id from ecs_goods where goods_name='KD876');
+	子查询可以用于数据的新增、数据的修改、数据的删除
+		练习5.
+		select id from student where name='Robert'
+		3>insert into achievement values((select id from student where name='Robert'),80);
+		4>update achievement set mark=87 where id=(select id from student where name='Rose');
+		5>
+		  delete from achievement where id=(select id from student where name='Betty');
+		  delete from student where name='Betty';
+	子查询分为单行子查询和多行子查询
+		单行子查询  查询子句返回的结果是一行 可以用in，=
+		多行子查询  查询子句返回的结果是多行 只能用in
+	需求:查询商品表中本店售价高于平均本店售价的商品名称
+		1>查询平均本店售价
+			select avg(shop_price) from ecs_goods;	
+		2>查询本店售价高于平均本店售价的商品名称
+			select goods_name from ecs_goods where shop_price>(select avg(shop_price) from ecs_goods);
+	需求:查询商品表中本店售价低于2000的所有商品的分类名称
+		1>查询商品表中满足条件的cat_id
+			select cat_id from ecs_goods where shop_price<2000;
+		2>查询分类表中cat_id为上面查询出来结果的分类名称
+			select cat_name from ecs_category where cat_id in (select cat_id from ecs_goods where shop_price<2000);
+
