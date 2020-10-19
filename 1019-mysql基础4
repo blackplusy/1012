@@ -115,7 +115,6 @@ b.子查询
 		group by co.country;
 
 
-
 		查询以C开头的国家，S开头的城市中每个城市中有多少客户？要求显示城市名称,客户数量(计算客户id)
 		select c.city,count(cu.customer_id)  from country co,city c,address a,customer cu
 		where co.country_id=c.country_id
@@ -152,3 +151,20 @@ b.子查询
 		第二个10代表取多少个
 
 
+--华为.jpg
+	select * from student order by ssex;
+	select * from score where degree between 80 and 100;
+
+--a.png
+	select * from 图书 t,作者 z
+	where t.作者编号=z.作者编号
+	and z.年龄<(select avg(年龄) from 作者);
+
+
+
+预习资料:
+https://github.com/blackplusy/0915/blob/master/0918-mongodb
+
+预习视频:
+链接：https://pan.baidu.com/s/11kJuFKW9eMqwi-76zE9JBA 
+提取码：geue 
