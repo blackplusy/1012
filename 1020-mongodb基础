@@ -1,0 +1,62 @@
+1.mongodb
+a.mongodb的安装
+	1>下载(推荐官网)
+		https://www.mongodb.com/try/download/community
+		a.操作系统
+			windows
+			linux
+			unix
+		b.操作系统位数
+			32  x86 i386 i686
+			64  x86_64  x64
+		c.软件版本
+			推荐最新版本
+	2>安装
+		a.解压压缩包
+		b.设置环境变量
+			计算机--属性--高级--环境变量--系统变量--Path中添加mongodb的bin文件夹
+			;F:\mongodb-win32-x86_64-2012plus-4.2.8\bin
+			确定--确定--确定
+	3>启动
+		mongo  mongodb的客户端服务
+		mongod mongodb的服务端服务
+		a.启动命令(命令提示符[win+r--cmd])
+			f:\data目录一定是存在的，可以自定义
+			mongod --dbpath f:\data
+			mongod --dbpath f:\data --logpath f:\data\mongo.log
+			mongod  mongodb的服务端服务
+			--dbpath 数据存放的路径(文件夹)
+			--logpath 日志文件存放的位置(文件)
+		b.检查服务和端口
+			mongod  mongodb的服务端服务
+			27017   mongodb的端口
+			1>查看进程
+				tasklist | find "mongod"
+			2>查看端口
+				netstat -an | find "27017"
+			3>补充
+				127.0.0.1 localhost 电脑本机
+				0.0.0.0   任意主机
+	4>登录mongodb
+		登录命令
+			mongo
+				登录本机test数据库
+			mongo 127.0.0.1/admin
+				登录IP地址为127.0.0.1的admin数据库
+			mongo 127.0.0.1:27017/admin
+				登录IP地址为127.0.0.1端口27017的admin数据库
+	5>mongodb的基础命令
+		mysql     mongodb
+		数据库     数据库
+		表         集合
+		数据       文档
+		db 	查看当前数据库的名字
+		show databases
+		show dbs
+			 查看当前有哪些数据库
+		use admin  当前数据库切换为admin
+		show tables
+		show collections
+			 查看当前数据库中有哪些集合
+		db.system.version.find()
+			 查看system.version集合中所有文档
