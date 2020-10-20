@@ -60,3 +60,43 @@ a.mongodb的安装
 			 查看当前数据库中有哪些集合
 		db.system.version.find()
 			 查看system.version集合中所有文档
+b.CURD(增删改查)
+	1>文档的新增
+		db.xiyouji.insert({name:'tangsir',age:18})
+	2>文档的查看
+		db.xiyouji.find({hobby:'girl'})
+	3>文档的修改
+		db.xiyouji.update({name:'tangsir'},{$set:{age:100}})
+	4>文档的删除
+		db.xiyouji.remove({name:'8jie'})
+
+c.文档的新增
+	1>新增普通文档
+		db.xiyouji.insert({name:'shasir'})
+	2>新增文档指定_id
+		db.xiyouji.insert({_id:1,name:'miss Gao',age:16})
+	3>新增内嵌文档
+		db.xiyouji.insert({name:'5kong',jingli:{hit:4,kill:100}})
+	4>新增多个文档
+		db.xiyouji.insert([{name:'nezha'},{name:'redhair'},{name:'sweet'}])
+
+d.文档的修改
+	1>覆盖
+		db.xiyouji.update({name:'tangsir'},{age:998})
+	2>修改
+		$set
+		db.xiyouji.update({age:16},{$set:{age:18}})
+	3>删除属性
+		$unset
+		db.xiyouji.update({name:'5kong'},{$unset:{'name':'5kong'}})
+	4>自增
+		$inc
+		db.xiyouji.update({_id:1},{$inc:{age:100}})
+	5>多行修改
+		db.xiyouji.update({name:'niumo'},{$set:{age:18}},{multi:true})
+
+e.文档的删除
+	1>删除指定文档
+		db.xiyouji.remove({name:'niumo'})
+	2>删除所有文档
+		db.xiyouji.remove({})
