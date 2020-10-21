@@ -147,10 +147,84 @@ TEL:18028768679
 			win+r--cmd--ping 192.168.4.44
 		linux下pingwindows的IP
 			ping 192.168.4.222
-			
 
+11.远程管理linux工具
+	putty
+	secure crt
+	xshell
+	xterm
 
+12.目录操作
+	a.创建目录
+		mkdir a
+			当前目录下创建空目录a
+		mkdir b /opt/c
+			当前目录下创建空目录b并且在/opt目录下创建空目录c
+		mkdir "d  e"
+			当前目录下创建空目录d  e，注意:特殊符号使用转义符\或者引号
+		mkdir f/g/h -p
+			当前目录下创建级联目录f/g/h
+	b.删除目录
+		rmdir
+		rm -r(推荐)
+		rm -r a
+			删除当前目录下的a目录
+		rm -rf f
+			强制删除当前目录下的f目录(无提示)	
+	c.移动目录
+		mv f b
+			剪切当前目录下的f目录到当前目录下的b目录中(b目录存在)
+		mv b g
+			重命名当前目录下的b目录为g(g目录不存在)
+	d.复制目录（复制目录需要加 -r）
+		cp -r f d\ \ e    
+			复制当前目录下的f目录到d  e目录中（d  e目录存在）
+		cp -r f g
+			复制当前目录下f目录并且命名为g目录(g目录不存在)
 
+13.文件操作
+	a.创建文件
+		1>touch
+			touch a
+				当前目录下创建空文件a
+			touch /opt/b c
+				/opt目录下创建b文件和当前目录下创建c文件
+		2>重定向
+			echo 打印
+			> 覆盖，如果没有文件，创建文件
+				echo 123 > heygor
+				覆盖123到heygor文件中
+			>>追加，如果没有文件，创建文件
+				echo heygor >> zhenshuai
+				追加heygor到zhenshuai文件中
+		3>vi/vim
+	b.删除文件
+		rm a
+			删除当前目录下的a文件
+		rm -f b
+			强制删除当前目录下的b
+	c.复制文件
+		cp heygor  f
+			复制当前目录下heygor文件到f目录下(f目录存在)
+		cp heygor baigor
+			复制heygor到当前目录下并且命名为baigor(baigor目录不存在)
+	d.剪切文件
+		mv baigor f
+			剪切baigor到f目录中(f目录存在)
+		mv heygor simida
+			重命名当前目录下heygor为simida
+	e.查看文件
+		cat  不分页显示文件内容
+			cat install.log
+		less 分页显示文件内容，可以向上、向下翻页，q退出
+			less install.log
+		more 分页显示文件内容，只能向下翻页
+			more install.log
+		head 获取文件的前几行
+			head -3 install.log
+		tail 获取文件的后几行
+			tail -2 install.log
+		vi/vim
 
-
+	f.修改文件
 
