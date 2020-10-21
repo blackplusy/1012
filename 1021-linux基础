@@ -103,6 +103,51 @@ TEL:18028768679
 		cd /var/log
 			当前目录切换到/var/log目录下
 
+9.查看帮助
+	a.man 官方手册
+		man ls 查看ls命令的官方手册
+	b.info 说明文档
+		info ls 查看ls命令的说明文档
+	c.--help 查看常见参数
+		ls --help 查看ls命令的常见参数
+
+10.网络配置
+	a.准备
+		1>linux中查看IP
+			ifconfig   
+				查看当前激活的网卡信息
+			ifconfig eth0
+				查看linux第一块网卡信息
+		2>关闭NetworkManager
+			/etc/init.d/NetworkManager stop
+		3>win下面搜索一个没人用到的IP地址
+			win+r--cmd--ipconfig 搜索到以太网适配器或者本地连接(192.168.4.x)
+			win+r--cmd--ping 192.168.4.x(x:1-254)--如果出现无法访问说明该IP地址没人使用可以用于linux设置
+			搜索出IP(192.168.4.44) 子网掩码(255.255.254.0)
+	b.linux中的网络配置
+		1>临时设置IP(重启网络后失效)
+			ifconfig eth0 192.168.4.44
+		2>命令设置IP(重启网络后生效)
+			setup--网络配置--设备配置--eth0--名称、设备不要改、取消DHCP(空格)、填写IP、子网掩码--确定--保存--保存并退出--退出--重启网络服务(service network restart)
+			如果发现eth0没有IP的话，激活eth0网卡(ifup eth0)
+		3>配置文件设置IP
+		4>补充:获取IP地址的方式
+			DHCP     动态获取
+			STATIC   静态设置
+	c.虚拟机的网络配置
+		右键标签--设置--网络适配器--设备状态[已连接、启动时链接]--桥接、复制物理网络链接状态
+		虚拟机网络链接模式
+		1>桥接          客户机可以和局域网中其他主机进行通信
+		2>网络地址转换   客户机共享宿主机的上网，无法和局域网中其他主机进行通信
+		3>仅主机        客户机和宿主机的私有通道，无法和局域网中其他主机进行通信
+	d.测试
+		win下pinglinux的IP
+			linux下关闭防火墙
+				service iptables stop
+			win+r--cmd--ping 192.168.4.44
+		linux下pingwindows的IP
+			ping 192.168.4.222
+			
 
 
 
