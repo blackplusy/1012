@@ -168,4 +168,54 @@ vi/vim
 				chown root:root install.log
 					修改文件拥有者和拥有组为root
 
+4.搜索
+	find      搜索文件 速度慢
+		find /etc -name conf
+			/etc目录下搜索名字是conf的文件
+		find /etc -name *.conf
+			/etc目录下搜索名字以.conf结尾
+	locate    搜索文件  速度快
+		locate passwd
+			系统中搜索和passwd相关文件
+	updatedb  刷新系统数据库
+	grep      搜索内容
+		grep root /etc/passwd
+			/etc/passwd文件中搜索含有root关键字的行
+		grep ^r /etc/passwd
+		 	/etc/passwd文件中搜索以r开头的内容
+		grep bash$ /etc/passwd
+5.管道
+	|   前面的输出作为后面的输入
+	cat /etc/passwd | grep ^r |grep bash$
+		/etc/passwd文件中搜索r开头并且bash结尾的内容
+	head -7 install.log |tail -1
+		查看install.log文件第7行内容
 
+6.管理命令
+	top  监控系统资源
+	ps -ef 查看系统进程
+		ps -ef | grep httpd  查看apache进程是否正常运行（httpd是web服务器常见名字(apache)）
+		ps -ef | grep sshd   查看sshd进程是否正常运行(sshd是远程链接linux所启动的服务)
+		ps -ef | grep mysqld 查看mysqld进程是否正常运行(mysqld是mysql的主服务)
+	netstat -an 查看系统开放的端口
+		22     sshd的端口
+		3306   mysql的端口
+		1521   oracle的端口
+		80     apache/nginx/iis的端口
+		8080   tomcat的端口
+	kill -9  pid   暴力杀 
+	     -15 pid   温柔杀
+	pid  进程id
+	free -m  查看内存使用情况 
+	df -h    查看磁盘使用率
+	mount    查看系统挂载情况
+	init     系统默认运行级别
+		init 0 关机
+		init 3 进入字符模式
+		init 5 进入到图形模式
+		init 6 重启
+		vim /etc/inittab
+	chkconfig 查看开机启动列表
+		chkconfig --level 35 iptables off
+	ifconfig  监控网络资源
+	vmstat    监控系统资源
