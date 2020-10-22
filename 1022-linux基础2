@@ -90,5 +90,82 @@ vi/vim
 		c3.解压压缩包
 			tar -xzvf test2.tgz
 
+3.用户和权限
+	a.用户
+		/etc/passwd   用户配置文件
+		/etc/shadow   密码配置文件
+		/etc/group    组配置文件
+		a1.新增
+			useradd simon 
+				新增用户simon
+			passwd simon
+				给simon用户设置密码
+		a2.修改
+			usermod -L simon
+				锁定用户simon
+			usermod -U simon
+				解锁simon用户
+		a3.删除
+			userdel -r simon
+				删除simon用户
+	b.权限
+		b1.查看权限
+			ls -l install.log
+			-rw-r--r-- 1 root root 64076 10月 22 00:46 install.log
+			1:文件类型   d:目录  -:普通文件
+			2-10:文件权限
+			11:文件节点
+			12:文件拥有者
+			13:文件拥有组
+			14:文件大小
+			15:最后修改时间
+			16:文件名
+		b2.常见权限
+			r:读
+				目录:可以列表
+				文件:可以查看文件内容
+			w:写
+				目录:可以创建、重命名、删除文件
+				文件:可以修改文件内容
+			x:执行
+				目录:可以进入
+				文件:可执行，二进制文件或者脚本文件
+		b3.权限分组
+			rw-         r--          r--
+			拥有者       拥有组       其他人
+		b4.权限判断
+			1>判断simon用户是否是文件拥有者，如果是，赋予权限
+			2>如果不是，判断simon用户是否是拥有组成员，如果是，赋予权限
+				id simon 查看simon用户的组信息
+			3>如果都不是，赋予其他人权限
+		b5.修改权限
+			1>chmod 直接修改权限
+				字符方式
+					u  拥有者
+					g  拥有组
+					o  其他人
+					a  所有人
+					chmod u+x install.log
+						拥有者增加执行权限
+					chmod g+x,o+x install.log
+						拥有组、其他人增加执行权限
+					chmod a-x install.log
+						所有用户取消执行权限
+				数字方式
+					r:4
+					w:2
+					x:1
+					-:0
+					chmod 777 install.log
+						所有用户拥有读写执行权限
+					chmod 000 install.log
+						所有用户没有任何权限
+			2>chown 通过修改文件属主修改权限
+				chown simon install.log
+					修改文件拥有者为simon
+				chown :bin install.log
+					修改文件拥有组为bin
+				chown root:root install.log
+					修改文件拥有者和拥有组为root
 
 
