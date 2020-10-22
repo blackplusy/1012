@@ -253,7 +253,42 @@ vi/vim
 			win下映射网络磁盘
 		12>共享文件
 			把需要共享的文件复制到/var/ftp目录下
-			
+	c.yum自动安装
+		1>加载光驱
+			右键虚拟机标签--设置--cd\dvd--已连接、启动时链接、使用iso映像文件
+		2>创建一个空目录用于光盘挂载
+			mkdir /yum
+		3>查找光驱对应硬件
+			mount搜索type是iso9660的对应硬件
+		4>挂载光驱
+			mount -o loop /dev/sr0 /yum
+		5>删除/etc/yum.repos.d/目录下所有文件
+			rm -rf /etc/yum.repos.d/*
+		6>在/etc/yum.repos.d/新建.repo结尾的文件，内容如下
+			[test]                     分类标签
+			name=test                  名字
+			baseurl=file:///yum        系统到哪里去找软件包
+			enabled=1                  是否启动自动安装 1是启动 0是关闭
+			gpgcheck=0                 光盘包检查 0是不检查 1是检查
+		7>清理yum缓存
+			yum clean all
+		8>查看可以安装软件的列表
+			yum list
+		9>安装apache相关服务
+			yum list | grep httpd
+			yum install http* -y  安装http开头的软件包和依赖包
+		10>启动apache服务
+			service httpd start
+		11>测试
+			查看进程
+				ps -ef |grep httpd
+			查看端口
+				netstat -an |grep 80
+			浏览器中输入http://linux的IP
+
+
+
+
 
 
 
