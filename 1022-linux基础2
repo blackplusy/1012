@@ -1,0 +1,94 @@
+who
+whoami
+pwd
+ls
+cd
+man
+info
+ifconfig
+setup
+service
+ping
+mkdir
+cp
+mv
+rm
+touch
+echo
+cat
+less
+more
+head
+tail
+vi/vim
+==========================================
+1.环境配置基础
+	a.安装操作系统
+	b.设置IP地址
+		b1.临时设置
+		b2.命令设置
+		b3.配置文件设置(重启网络后生效)
+		vim /etc/sysconfig/network-scripts/ifcfg-eth0
+			DEVICE=eth0                                 #设备名称
+			HWADDR=00:0c:29:64:1c:38                    #网卡mac地址
+			TYPE=Ethernet                               #上网类型
+			UUID=f96c45ed-ebe8-4ff4-99f4-eda42e1de55d   
+			ONBOOT=yes                                   #是否随开机启动而启动 yes 是 no 否
+			NM_CONTROLLED=no                             #是否被NetworkManager控制 no 不受控 yes 受控
+			BOOTPROTO=static                             #启动协议  DHCP STATIC
+			IPADDR=192.168.4.44                          #IP地址
+			NETMASK=255.255.254.0                        #子网掩码
+			IPV6INIT=no
+			USERCTL=no
+		service network restart
+	c.设置主机名
+		FQDN(完全合格域名)
+		c1.查看主机名
+			hostname
+		c2.临时设置主机名(重启系统后失效)
+			hostname heygor.gaga.com
+		c3.设置主机名(重启系统后生效)
+			vim /etc/sysconfig/network
+			HOSTNAME heygor.gaga.com
+	d.绑定主机名(立即生效)
+		vim /etc/hosts
+		192.168.4.44  heygor.gaga.com
+	e.关闭防火墙（建议关闭）
+		service iptables stop    关闭防火墙
+		service iptables status  查看防火墙状态
+		service iptables start   启动防火墙
+	f.关闭selinux
+		vim /etc/selinux/config
+		SELINUX=disabled
+
+2.包、压缩文件、压缩包
+	a.包(打包)
+		创建的包文件通常以.tar结尾
+		a1.打包
+			tar -cvf test.tar install.log*
+		a2.查看包中文件的文件属性信息
+			tar -tvf test.tar
+		a3.解包到当前目录
+			tar -xvf test.tar
+		a4.解包到指定目录( -C )
+			tar -xvf test.tar -C /opt/
+	b.压缩文件(体积减小)
+		du -sh install.log
+			查看install.log文件大小
+		b1.压缩文件
+			gzip install.log
+		b2.查看文件压缩属性信息
+			gzip -l install.log.gz
+		b3.解压文件
+			gzip -d install.log.gz
+	c.压缩包
+		先打包后压缩，压缩包文件通常以.tar.gz结尾或者以.tgz结尾
+		c1.创建压缩包
+			tar -czvf test2.tgz a*
+		c2.查看压缩包
+			tar -tzvf test2.tgz
+		c3.解压压缩包
+			tar -xzvf test2.tgz
+
+
+
