@@ -219,3 +219,67 @@ vi/vim
 		chkconfig --level 35 iptables off
 	ifconfig  监控网络资源
 	vmstat    监控系统资源
+7.rhel的软件安装
+	a.安装方式
+		1>rpm安装
+		2>yum自动安装
+		3>二进制文件安装
+		4>源码安装
+	b.软件安装基础
+		rhel 5 中所有软件包都在光盘的Server目录下
+		rhel 6 中所有软件包都在光盘的Packages目录下
+		软件包通常以.rpm结尾
+		例子:安装vsftpd服务
+		1>安装操作系统
+		2>设置IP地址、主机名、绑定主机名
+		3>关闭防火墙、关闭selinux
+			service iptables stop
+		4>加载光驱
+			右键虚拟机标签--设置--cd\dvd--已连接、启动时链接、使用iso映像文件
+		5>查看访问路径
+			输入mount命令，找到type是 iso9660的对应目录
+			type iso9660的对应硬件就是光盘、光驱等等
+		6>进入到光盘所在目录的Packages中
+			 cd /media/RHEL-6.6\ Server.x86_64/Packages/
+		7>搜索vsftpd相关软件包
+			ls | grep vsftpd
+		8>安装相应软件包
+			rpm -ivh vsftpd-2.2.2-12.el6_5.1.x86_64.rpm
+		9>启动vsftpd服务
+			service vsftpd start
+		10>测试
+			浏览器中输入ftp://linux的IP，如果看到pub目录说明安装配置成功
+		11>补充
+			win下映射网络磁盘
+		12>共享文件
+			把需要共享的文件复制到/var/ftp目录下
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
