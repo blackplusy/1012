@@ -1,0 +1,88 @@
+who
+whoami
+pwd
+ls
+cd
+man
+info
+setup
+ping
+service
+ifconfig
+mkdir
+rm
+cp
+mv
+touch
+echo
+cat
+less
+more
+head
+tail
+vi
+tar
+gzip
+du
+useradd
+usermod
+userdel
+chmod
+chown
+find
+locate
+grep
+top
+ps
+kill
+netstat
+df
+chkconfig
+vmstat
+free
+mount
+init
+rpm
+yum
+=================================
+1.二进制文件的安装
+	mongodb软件安装部署
+	a>安装操作系统
+	b>配置IP地址、主机名、绑定主机名
+	c>关闭防火墙、关闭selinux
+	d>下载mongodb软件包
+	https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-4.4.1.tgz
+		1>操作系统类型
+			win
+			linux
+			unix
+		2>操作系统位数
+			x86 i386 i686  32位操作系统
+			x86_64  x64    64位操作系统
+		3>软件版本
+			推荐最新
+	e>把下载好的软件包传入linux中(winscp)
+	f>解压压缩包到当前目录下
+		tar -xzvf mongodb-linux-x86_64-rhel62-4.4.1.tgz
+	g>设置环境变量
+		/etc/profile
+		vim ~/.bash_profile (推荐)
+		PATH中添加mongodb的bin目录的路径
+		PATH=$PATH:$HOME/bin:/root/mongodb/bin
+	h>使环境变量生效
+		source ~/.bas_profile
+	i>启动mongodb
+		mkdir /data
+		mongod --dbpath /data --logpath /data/mongo.log --fork
+		mongod mongodb的主服务
+		--dbpath 数据存放的路径(目录)
+		--logpath日志存放的位置(文件)
+		--fork   后台运行
+	j>检查mongodb的服务和端口
+		mongod mongodb的主服务
+			ps -ef |grep mongod
+		27017  mongodb的端口
+			netstat -an | grep 27017
+
+
+
