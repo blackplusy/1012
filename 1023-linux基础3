@@ -167,5 +167,65 @@ yum
 			./startup.sh
 	p>浏览器访问http://linux的IP:8080/tenorder
 
-5.
+5.awk  线性文本处理工具
+	可以在在本文数据进行字段分割和重组
+	默认是以空格或者连续空格作为分隔符
+	a.查看本机IP地址
+		ifconfig eth0 |grep Mask |awk -F " " '{print $2}' |awk -F ":" '{print $2}'
+	b.打印所有行
+		awk '{ print }' /etc/passwd
+	c.打印第一列
+		查看系统中有哪些用户
+		awk -F ":" '{ print $1}' /etc/passwd
+	d.打印多个列
+		head -3 /etc/passwd | awk -F ":" '{print $1,$3}'
+		head -3 /etc/passwd | awk -F ":" '{print $1":"$3}'
+	e.把所有通过ssh登录失败的记录的IP打印出来
+		lastb -i | grep ssh|awk '{print $3}'|grep -v Thu |uniq -c
+		grep -v 屏蔽搜索出来的内容
+		uniq -c 去重，统计
+	f.打印每行的最后一列
+		$NF 最后一列
+		awk -F ":" '{ print $NF}' /etc/passwd
+	g.打印每行的字段数(每行有多少个列)
+		NF  列的数量
+		awk -F ":" '{ print NF }' /etc/passwd
+	h.运算操作符
+		+
+		-
+		*
+		/
+		%
+		^
+		++
+		--
+		echo | awk '{print 2^3}'
+	i.关系操作符
+		==
+		!=
+		>=
+		<=
+		>
+		<
+	j.逻辑操作符
+		&& 逻辑与
+		|| 逻辑或
+		!  逻辑非
+	k.打印行号
+		NR代表行号，可以作简单的条件判断
+		awk -F ":" '{print NR,$1}' /etc/passwd
+		awk -F ":" 'NR==7{ print }' /etc/passwd
+		打印字段数大于3的行
+		必须指定分隔符号，列数才有意义，NF(列数)
+		awk -F ":" 'NF>3{print }' /etc/passwd
+		打印uid在30和40之间的用户名
+		awk -F ":" '$3>=30&&$3<=40{ print }' /etc/passwd
+		隔行打印(隔行删除)
+		awk 'NR%2==0{ print }' /etc/passwd
+
+
+
+
+
+
 
