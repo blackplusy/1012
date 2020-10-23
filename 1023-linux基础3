@@ -83,6 +83,48 @@ yum
 			ps -ef |grep mongod
 		27017  mongodb的端口
 			netstat -an | grep 27017
-
-
+2.jdk的安装配置
+	a>jdk和jre
+		jdk java的开发环境
+		jre java的运行环境
+	b>jdk的版本
+		openJDK
+		oracle JDK
+	c>查看当前系统jdk版本
+		java -version
+	d>下载oracle jdk
+		操作系统
+		位数
+		版本
+	e>通过winscp把下载好的压缩包传入linux中
+	f>解压jdk压缩包
+	g>设置环境变量
+		vim .bash_profile
+		JAVA_HOME=/root/jdk
+		PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH:$home/bin
+	h>使环境变量生效
+		source .bash_profile
+	i>测试
+		java -version
+3.tomcat的安装配置
+	a>下载
+		https://tomcat.apache.org/download-70.cgi
+	b>把下载后压缩包传入linux中
+	c>解压tomcat压缩包
+		tar -xzvf apache-tomcat-7.0.106.tar.gz
+	d>tomcat目录简介
+		bin  	存放tomcat命令的位置
+		conf    存放tomcat配置文件的位置
+		lib     存放tomcat库文件的位置
+		logs    存放日志文件的位置
+		webapps 项目代码所在目录
+		temp    tomcat临时文件存放位置
+	e>启动tomcat服务
+		1>进入到tomcat的bin目录
+		2>执行startup.sh
+			./startup.sh
+	f>检查tomcat
+		tomcat端口 8080
+		ps -ef |grep tomcat
+		浏览器中输入http://linux的IP:8080进行访问
 
