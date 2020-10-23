@@ -70,7 +70,7 @@ yum
 		PATH中添加mongodb的bin目录的路径
 		PATH=$PATH:$HOME/bin:/root/mongodb/bin
 	h>使环境变量生效
-		source ~/.bas_profile
+		source ~/.bash_profile
 	i>启动mongodb
 		mkdir /data
 		mongod --dbpath /data --logpath /data/mongo.log --fork
