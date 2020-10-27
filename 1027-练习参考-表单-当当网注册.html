@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.a {                       /*搜索class的值是a的元素*/
+			outline-style: none;   /* 取消input控件原始样式*/
+			width: 250px;          /*元素的宽度*/
+			/*height: 100px;*/
+		}
+		.b {
+			outline-style: none;
+			width: 100px;
+		}
+		div {
+			width: 150px;               /*元素的宽度*/
+			height: 50px;               /*元素的高度*/
+			border-radius: 50px;        /*边框翻转*/
+			background: red;            /*背景颜色*/
+			line-height: 50px;          /*行高*/
+			text-align: center;         /*文本居中*/
+			color: white;               /*文字颜色*/
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<table>
+			<tr>
+				<td>手机号码</td>
+				<td colspan="3"><input type="text" class="a"></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>登录密码</td>
+				<td colspan="3" ><input type="text" class="a"></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td align="right">验证码</td>
+				<td><input type="text" class="b"></td>
+				<td><img src="1.jpg"></td>
+				<td>换张图</td>
+			</tr>
+		</table>
+			<div>
+				立即注册
+			</div>
+	</form>
+</body>
+</html>
