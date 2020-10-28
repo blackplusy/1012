@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		div {
+			width: 100px;
+			height: 100px;
+			background: skyblue;
+		}
+		.div1 {
+			margin-bottom: 50px;
+		}
+		.div2 {
+			margin-top: 100px;
+		}
+		.span1 {
+			margin-right: 50px;
+		}
+		.span2 {
+			margin-left: 50px;
+		}
+	</style>
+</head>	
+<body>
+	<!-- 外边距折叠只会出现在上下布局的情况 -->
+	<!-- 外边距一定取最大的边距 -->
+	<div class="div1">1</div>
+	<div class="div2">2</div>
+	<span class="span1">3</span>
+	<span class="span2">4</span>
+</body>
+</html>
